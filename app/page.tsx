@@ -33,10 +33,10 @@ export const metadata = {
 	}
 }
 
-const Home = () => (
+const HomePage = () => (
 	<main className={styles.root}>
 		<h1 className={styles.title}>next-template</h1>
 	</main>
 )
 
-export default Home
+export default HomePage
