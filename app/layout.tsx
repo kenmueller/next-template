@@ -12,6 +12,7 @@ import './layout.scss'
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
+	metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
 	applicationName: 'next-template',
 	authors: [{ name: 'next-template', url: process.env.NEXT_PUBLIC_ORIGIN }],
 	publisher: 'next-template',
