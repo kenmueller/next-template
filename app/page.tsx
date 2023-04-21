@@ -1,6 +1,8 @@
 if (!process.env.NEXT_PUBLIC_ORIGIN)
 	throw new Error('Missing NEXT_PUBLIC_ORIGIN')
 
+import { Metadata } from 'next'
+
 import preview from '@/assets/preview.jpg'
 
 import styles from './page.module.scss'
@@ -9,7 +11,7 @@ const url = process.env.NEXT_PUBLIC_ORIGIN
 const title = 'next-template'
 const description = 'next-template'
 
-export const metadata = {
+export const metadata: Metadata = {
 	alternates: { canonical: url },
 	title,
 	description,
@@ -20,7 +22,7 @@ export const metadata = {
 		siteName: 'next-template',
 		locale: 'en_US',
 		url,
-		images: preview,
+		images: preview.src,
 		countryName: 'United States'
 	},
 	twitter: {
@@ -29,7 +31,7 @@ export const metadata = {
 		creator: '@next-template',
 		title,
 		description,
-		images: preview
+		images: preview.src
 	}
 }
 

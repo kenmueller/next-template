@@ -2,6 +2,7 @@ if (!process.env.NEXT_PUBLIC_ORIGIN)
 	throw new Error('Missing NEXT_PUBLIC_ORIGIN')
 
 import { ReactNode } from 'react'
+import { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
 import favicon from '@/assets/favicon.png'
@@ -10,7 +11,7 @@ import './layout.scss'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
-export const metadata = {
+export const metadata: Metadata = {
 	applicationName: 'next-template',
 	authors: [{ name: 'next-template', url: process.env.NEXT_PUBLIC_ORIGIN }],
 	publisher: 'next-template',
