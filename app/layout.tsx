@@ -5,7 +5,12 @@ import cx from 'classnames'
 
 import RecoilRoot from '@/components/Recoil/Root'
 import baseMetadata from '@/lib/metadata/base'
+import ToastContainer from '@/components/Toast/Container'
+import FontAwesomeConfig from '@/components/FontAwesome/Config'
 
+import 'balloon-css/balloon.css'
+import 'react-toastify/dist/ReactToastify.css'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import './layout.scss'
 
 const inter = Inter({
@@ -36,9 +41,15 @@ const sfMono = localFont({
 export const generateMetadata = () => baseMetadata()
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
-	<html lang="en" dir="ltr" className="h-full">
-		<body className={cx(inter.className, sfMono.variable, 'h-full')}>
-			<RecoilRoot>{children}</RecoilRoot>
+	<html lang="en" dir="ltr" className="h-full scroll-smooth">
+		<body
+			className={cx(inter.className, sfMono.variable, 'h-full scroll-smooth')}
+		>
+			<RecoilRoot>
+				{children}
+				<ToastContainer />
+				<FontAwesomeConfig />
+			</RecoilRoot>
 		</body>
 	</html>
 )

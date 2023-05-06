@@ -1,11 +1,10 @@
-import preview from '@/assets/preview.jpg'
 import pageMetadata from '@/lib/metadata/page'
 
 export const generateMetadata = () =>
 	pageMetadata({
 		title: 'next-template',
 		description: 'next-template',
-		image: preview.src
+		previewTitle: 'next-template'
 	})
 
 const HomePage = () => (

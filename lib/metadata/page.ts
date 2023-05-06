@@ -5,14 +5,16 @@ import getUrl from '@/lib/getUrl'
 const pageMetadata = ({
 	title,
 	description,
-	image
+	previewTitle
 }: {
 	title: string
 	description: string
-	image: string
+	previewTitle: string
 }): Metadata => {
 	const fullUrl = getUrl()
 	const url = new URL(fullUrl.pathname, fullUrl.origin).href
+
+	const image = `/api/preview?title=${encodeURIComponent(previewTitle)}`
 
 	return {
 		alternates: { canonical: url },
