@@ -38,7 +38,7 @@ const sfMono = localFont({
 	fallback: ['Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace']
 })
 
-export const generateMetadata = () => baseMetadata()
+export const metadata = baseMetadata
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
 	<html lang="en" dir="ltr" className="h-full scroll-smooth">
