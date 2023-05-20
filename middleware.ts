@@ -1,13 +1,12 @@
-if (!process.env.NEXT_PUBLIC_HOST) throw new Error('Missing NEXT_PUBLIC_HOST')
-
 import { NextRequest, NextResponse } from 'next/server'
+import { v4 as uuid } from 'uuid'
 
 import DEV from './lib/dev'
 import HttpError from './lib/error/http'
 import ErrorCode from './lib/error/code'
 import errorFromUnknown from './lib/error/fromUnknown'
-
-const ORIGIN = `${DEV ? 'http' : 'https'}://${process.env.NEXT_PUBLIC_HOST}`
+import ORIGIN from './lib/origin'
+import getCsp from './lib/csp'
 
 const middleware = (request: NextRequest) => {
 	try {
@@ -19,24 +18,36 @@ const middleware = (request: NextRequest) => {
 		if (!(protocol && host))
 			throw new HttpError(ErrorCode.BadRequest, 'Invalid request')
 
-		const url = new URL(request.url)
+		const originalUrl = new URL(request.url)
 
-		const search = url.searchParams.toString()
-		const path = `${url.pathname}${search && `?${search}`}`
+		const search = originalUrl.searchParams.toString()
+		const path = `${originalUrl.pathname}${search && `?${search}`}`
 
-		if (
-			!(
-				(DEV ? /http/ : /https/).test(protocol) &&
-				host === process.env.NEXT_PUBLIC_HOST!
-			)
-		)
-			return NextResponse.redirect(new URL(path, ORIGIN))
+		const url = new URL(path, ORIGIN)
 
-		headers.set('x-url', new URL(path, ORIGIN).href)
+		if (!((DEV ? /http/ : /https/).test(protocol) && host === ORIGIN.host))
+			return NextResponse.redirect(url)
 
-		return NextResponse.next({
+		headers.set('x-url', url.href)
+
+		const nonce = uuid()
+		const csp = getCsp(nonce)
+
+		const cspKey =
+			request.nextUrl.pathname === '/csp-report-only'
+				? 'content-security-policy-report-only'
+				: 'content-security-policy'
+
+		headers.set(cspKey, csp)
+		headers.set('x-nonce', nonce)
+
+		const response = NextResponse.next({
 			request: { headers }
 		})
+
+		response.headers.set(cspKey, csp)
+
+		return response
 	} catch (unknownError) {
 		const { code, message } = errorFromUnknown(unknownError)
 		return new NextResponse(message, { status: code })

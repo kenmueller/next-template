@@ -1,21 +1,17 @@
 import { Metadata } from 'next'
 
 import favicon from '@/assets/favicon.png'
-import getUrl from '@/lib/getUrl'
+import ORIGIN from '@/lib/origin'
 
-const baseMetadata = (): Metadata => {
-	const url = getUrl()
-
-	return {
-		metadataBase: new URL(url.origin),
-		applicationName: 'next-template',
-		authors: [{ name: 'next-template', url: url.origin }],
-		publisher: 'next-template',
-		creator: 'next-template',
-		themeColor: 'white',
-		manifest: '/manifest.webmanifest',
-		icons: favicon.src
-	}
+const baseMetadata: Metadata = {
+	metadataBase: ORIGIN,
+	applicationName: 'next-template',
+	authors: [{ name: 'next-template', url: ORIGIN }],
+	publisher: 'next-template',
+	creator: 'next-template',
+	themeColor: 'white',
+	manifest: '/manifest.webmanifest',
+	icons: favicon.src
 }
 
 export default baseMetadata

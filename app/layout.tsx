@@ -3,10 +3,10 @@ import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import cx from 'classnames'
 
-import RecoilRoot from '@/components/Recoil/Root'
 import baseMetadata from '@/lib/metadata/base'
-import ToastContainer from '@/components/Toast/Container'
-import FontAwesomeConfig from '@/components/FontAwesome/Config'
+import RecoilRoot from './RecoilRoot'
+import ToastContainer from './ToastContainer'
+import FontAwesomeConfig from './FontAwesomeConfig'
 
 import 'balloon-css/balloon.css'
 import 'react-toastify/dist/ReactToastify.css'

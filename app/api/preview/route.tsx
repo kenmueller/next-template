@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse, ImageResponse } from 'next/server'
 
 import errorFromUnknown from '@/lib/error/fromUnknown'
-import Preview from '@/components/Preview'
+import Preview from './Preview'
 import getUrl from '@/lib/getUrl'
 import HttpError from '@/lib/error/http'
 import ErrorCode from '@/lib/error/code'

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+// @ts-expect-error
 const Await = async <Value,>({
 	promise,
 	children
