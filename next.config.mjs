@@ -1,7 +1,7 @@
-const { getCSP, SELF, UNSAFE_INLINE, UNSAFE_EVAL } = require('csp-header')
-const withPlugins = require('next-compose-plugins')
-const { default: withPwa } = require('@ducanh2912/next-pwa')
-const withBundleAnalyzer = require('@next/bundle-analyzer')
+import { getCSP, SELF, UNSAFE_INLINE, UNSAFE_EVAL } from 'csp-header'
+import withPlugins from 'next-compose-plugins'
+import withPwa from '@ducanh2912/next-pwa'
+import withBundleAnalyzer from '@next/bundle-analyzer'
 
 const DEV = process.env.NODE_ENV === 'development'
 
@@ -31,7 +31,7 @@ const config = {
 	]
 }
 
-module.exports = withPlugins(
+export default withPlugins(
 	[
 		withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' }),
 		withPwa({ disable: DEV, dest: 'public' })
