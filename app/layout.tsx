@@ -4,13 +4,10 @@ import localFont from 'next/font/local'
 import cx from 'classnames'
 
 import baseMetadata from '@/lib/metadata/base'
-import RecoilRoot from './RecoilRoot'
 import ToastContainer from './ToastContainer'
-import FontAwesomeConfig from './FontAwesomeConfig'
 
 import 'balloon-css/balloon.css'
 import 'react-toastify/dist/ReactToastify.css'
-import '@fortawesome/fontawesome-svg-core/styles.css'
 import './layout.scss'
 
 const inter = Inter({
@@ -38,6 +35,7 @@ const sfMono = localFont({
 	fallback: ['Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace']
 })
 
+export const dynamic = 'force-dynamic'
 export const metadata = baseMetadata
 
 const RootLayout = ({ children }: { children: ReactNode }) => (
@@ -45,11 +43,8 @@ const RootLayout = ({ children }: { children: ReactNode }) => (
 		<body
 			className={cx(inter.className, sfMono.variable, 'h-full scroll-smooth')}
 		>
-			<RecoilRoot>
-				{children}
-				<ToastContainer />
-				<FontAwesomeConfig />
-			</RecoilRoot>
+			{children}
+			<ToastContainer />
 		</body>
 	</html>
 )

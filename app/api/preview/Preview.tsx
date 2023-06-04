@@ -24,7 +24,14 @@ const Preview = ({ title }: { title: string }) => (
 		>
 			next-template
 		</h3>
-		<h1 style={{ textAlign: 'center', fontSize: 50 }}>{title}</h1>
+		<h1
+			style={{
+				textAlign: 'center',
+				fontSize: 50
+			}}
+		>
+			{title}
+		</h1>
 	</div>
 )
 
